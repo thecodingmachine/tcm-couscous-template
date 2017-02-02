@@ -67,7 +67,7 @@
 
     </script>
 </head>
-<body>
+<body class="{{ theme }}">
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -76,122 +76,101 @@
     js = d.createElement(s); js.id = id;
     js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.3&appId=1549118041971618";
     fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+</script>
 
-<div id="wrapper" class="red">
-
-    <header id="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <strong class="logo">
-                        <a href="http://www.thecodingmachine.com/">
-                            <img class="logo-white" src="{{ baseUrl }}/{{ logo.white }}" alt="">
-                            <img class="logo-black" src="{{ baseUrl }}/{{ logo.black }}" alt="">
-                        </a>
-                    </strong>
-                </div>
-                <!--<div class="col-md-4 col-md-push-0 col-sm-3 col-sm-push-9 col-xs-12">
-                    <h2>Best practices</h2>
-                </div>-->
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                    <nav class="navbar navbar-default">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li><a href="{{ baseUrl }}/">ABOUT</a></li>
-                                {% for itemId, item in menu.items %}
-                                    {% if (item.absoluteUrl or item.relativeUrl) %}
-                                        <li class="{{ itemId == currentMenu ? 'active' }} visible-xs-block">
-                                            <a href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}">
-                                                {{ item.text|raw }}
-                                            </a>
-                                        </li>
-                                    {% endif %}
-                                {% endfor %}
-                                <li><a href="http://www.thecodingmachine.com/">TheCodingMachine</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img class="img-responsive" src="{{ baseUrl }}/{{ logo.logo }}" alt="" width="85px" style="position: absolute;">
         </div>
-    </header>
-    <main id="main" role="main">
-        {% if githubUrl %}
-        <a href="{{ githubUrl }}">
-            <img src="{{ baseUrl }}/img/github-corner-right.svg" alt="Fork me on Github" title="Fork me on Github" class="github-ribbon" />
-        </a>
-        {% endif %}
-        <div class="container">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav text-left">
+                <li><a href="{{ baseUrl }}/">ABOUT</a></li>
+                {% for itemId, item in menu.items %}
+                    {% if (item.absoluteUrl or item.relativeUrl) %}
+                        <li class="{{ itemId == currentMenu ? 'active' }} visible-xs-block">
+                            <a href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}">
+                                {{ item.text|raw }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                <li><a href="http://www.thecodingmachine.com/">TheCodingMachine</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Full Width Image Header with Logo -->
+<!-- Image backgrounds are set within the full-width-pics.css file. -->
+<div id="wrapper">
+    <a href="#menu-toggle" class="burger-position" id="menu-toggle" ><img src="{{ baseUrl }}/{{ icon.burger }}"> </a>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            {% for itemId, item in menu.items %}
+                {% if (item.absoluteUrl or item.relativeUrl) %}
+                    <li class="{{ (itemId == currentMenu or item.originalUrl == currentFile) ? 'active' }}">
+                        <a href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}">
+                            {{ item.text|raw }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <h4>{{ item.text|raw }}</h4>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <header class="image-bg-fluid-height skew">
+            <div class="wrapper content">
+                <!-- /
+              <h4 class="glitch">DISCOVERY</h4>
+               -->
+            </div>
+
+        </header>
+        <div class="container pt100">
             <div class="row">
-                <aside id="sidebar" class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
-                    <div class="sidebar">
-                        <div class="sidebar-holder">
-                            {% if menu is defined %}
-
-                                <nav id="sidebar" class="" role="navigation">
-
-                                    <ul class="nav nav-pills nav-stacked">
-                                        {% for itemId, item in menu.items %}
-                                            {% if (item.absoluteUrl or item.relativeUrl) %}
-                                                <li class="{{ (itemId == currentMenu or item.originalUrl == currentFile) ? 'active' }}">
-                                                    <a href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}">
-                                                        {{ item.text|raw }}
-                                                    </a>
-                                                </li>
-                                            {% else %}
-                                                <li>
-                                                    <h4>{{ item.text|raw }}</h4>
-                                                </li>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </ul>
-
-                                </nav>
-
-                            {% endif %}
-
-                        </div>
-                    </div>
-                </aside>
-
-                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 content">
+                <div class="col-xs-12">
                     {% if title %}<h1>{{ title }} <small>{{ subTitle }}</small></h1>{% endif %}
                     {{ content|raw }}
 
                     <p class="fork-and-edit">
-                    Found a typo? Something is wrong in this documentation? Just
-                    <a href="{{ githubForkUrl }}{{ currentFile }}">fork and edit it</a>!
+                        Found a typo? Something is wrong in this documentation? Just
+                        <a href="{{ githubForkUrl }}{{ currentFile }}">fork and edit it</a>!
                     </p>
                 </div>
             </div>
         </div>
-        <div class="img-block">
-            <img src="{{ baseUrl }}/dist/img/image13.jpg" alt="image description">
-        </div>
-    </main>
+    </div>
+    <!-- /#page-content-wrapper -->
 
 
-    <a href="#0" class="cd-top"></a>
-</div> <!--  end wrapper -->
-<div class="b-container">
-    <div class="container">
-        <aside class="row">
-            <div class="col-xs-12">
-                <div class="text-center">
-                    Made with <span class="glyphicon glyphicon-heart" style="color: red" aria-hidden="true"></span><span class="sr-only">love</span> by <a href="https://www.thecodingmachine.com/"><img src="{{ baseUrl }}/img/logo.png" alt="TheCodingMachine"></a> for all open-source lovers
-                </div>
-            </div>
-        </aside>
+
+</div>
+<div class="footer">
+    <div class="container-fluid">
         <footer class="row" id="footer">
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-0">
+            <div class="col-xs-12">
+                Made with <span class="pulse2 glyphicon glyphicon-heart" style="color: red" aria-hidden="true"></span><span class="sr-only">love</span> by <a href="https://www.thecodingmachine.com/"><img src="{{ baseUrl }}/img/logo.png" alt="TheCodingMachine"></a> for all open-source lovers
                 <span class="copyright">&copy; 2016 - {{ "now"|date("Y") }} <a href="https://www.thecodingmachine.com/">TheCodingMachine</a> - All Rights Reserved</span>
                 <span class="design-by">Design by <a href="http://www.allaboutdavid.fr/" target="_blank">All about david</a><br/>
                 Powered by <a href="http://couscous.io/">Couscous</a></span>
@@ -199,6 +178,14 @@
         </footer>
     </div>
 </div>
+
+<!-- /#wrapper -->
 <script type='text/javascript' src='{{ baseUrl }}/build/app.bundle.js'></script>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
 </body>
 </html>
