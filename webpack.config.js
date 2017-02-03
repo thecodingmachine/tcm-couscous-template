@@ -56,7 +56,7 @@ module.exports = {
         new webpack.ContextReplacementPlugin(
             /highlight\.js\/lib\/languages$/,
             new RegExp(`^./(${['javascript', 'php', 'bash', 'sql', 'css', 'less', 'json'].join('|')})$`)
-        )
+)
         /*new webpack.ProvidePlugin({
             hljs: "jquery",
             jQuery: "jquery"
@@ -67,7 +67,7 @@ module.exports = {
     ],
     resolve: {
         alias: {
-            "hljs": "./node_modules/highlightjs/highlight.pack"
+            "hljs": path.join(__dirname, "node_modules/highlightjs/highlight.pack")
         //    'vue$': 'vue/dist/vue.common.js',
         //    '_components':  path.resolve(__dirname, './membership/src/components')
         }

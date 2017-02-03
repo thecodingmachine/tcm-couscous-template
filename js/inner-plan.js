@@ -2,11 +2,11 @@
 let $ = require("../node_modules/jquery/src/jquery");
 
 $(function() {
-    var $activeLi = $('#sidebar > ul > li.active');
+    var $activeLi = $('#sidebar-wrapper > ul > li.active');
 
     var $ul = $('<ul />').appendTo($activeLi);
 
-    $("#main .content h2").each(function(index, elem) {
+    $("#page-content-wrapper h2").each(function(index, elem) {
         var $elem = $(elem);
         var $li = $('<li/>').appendTo($ul);
         $('<a />').attr('href', '#'+elem.id).text($elem.text()).appendTo($li);
