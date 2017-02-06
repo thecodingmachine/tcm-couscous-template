@@ -54,8 +54,15 @@
     <script type='text/javascript' src='{{ baseUrl }}/components/highlightjs/highlight.pack.min.js'></script>-->
 
 
-    <style>pre.hljs {padding: 5px;}
-    pre.hljs code {}</style>
+    <style>
+        pre.hljs {padding: 5px;}
+        pre.hljs code {}
+        {% if background-image %}
+        .image-bg-fluid-height, image-bg-fixed-height {
+            background-image: url('{{ background-image|e('css') }}');
+        }
+        {% endif %}
+    </style>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
