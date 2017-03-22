@@ -157,7 +157,7 @@
         <div class="container pt100">
             <div class="row">
                 <div class="col-xs-12">
-                    {% if title %}<h1>{{ title }} <small>{{ subTitle }}</small></h1>{% endif %}
+                    {% if title and not hidetitle %}<h1>{{ title }} <small>{{ subTitle }}</small></h1>{% endif %}
                     {{ content|raw }}
 
                     <p class="fork-and-edit">
