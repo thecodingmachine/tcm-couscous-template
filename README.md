@@ -15,3 +15,12 @@ scripts:
     after:
         - cd .couscous/generated && npm install && npm run build
 ```
+
+Google analytics integration
+----------------------------
+
+Simply add your tracking ID in the `couscous.yml` file
+
+```yml
+google_analytics: UA-XXXXXXXX-X
+```

@@ -53,13 +53,6 @@
     <link rel='stylesheet' id='font-awesome-css'  href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' type='text/css' media='all' />
     <link rel='stylesheet' id='google-roboto-css'  href='//fonts.googleapis.com/css?family=Roboto%3A100%2C400%2C300%2C400italic%2C500%2C700' type='text/css' media='all' />
 
-
-    <!--    <script type='text/javascript' src='{{ baseUrl }}/components/jquery/dist/jquery.js'></script>
-    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js'></script>
-    <script type='text/javascript' src='{{ baseUrl }}/dist/js/template/script.js'></script>
-    <script type='text/javascript' src='{{ baseUrl }}/components/highlightjs/highlight.pack.min.js'></script>-->
-
-
     <style>
         pre.hljs {padding: 5px;}
         pre.hljs code {}
@@ -69,16 +62,18 @@
         }
         {% endif %}
     </style>
+    {% if google_analytics %}
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-10196481-2', 'auto');
+        ga('create', '{{ google_analytics }}', 'auto');
         ga('send', 'pageview');
 
     </script>
+    {% endif %}
 </head>
 <body class="{{ theme }}">
 
@@ -109,6 +104,9 @@
                     {% endif %}
                 {% endfor %}
                 <li><a href="http://www.thecodingmachine.com/">TheCodingMachine</a></li>
+                {% if githubUrl %}
+                <li><a href="{{ githubUrl }}"><img src="{{ baseUrl }}/img/GitHub-Mark-Light-20px.png" /> Github</a></li>
+                {% endif %}
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -166,8 +164,6 @@
     </div>
     <!-- /#page-content-wrapper -->
 
-
-
 </div>
 <div class="footer">
     <div class="container-fluid">
@@ -175,7 +171,6 @@
             <div class="col-xs-12">
                 Made with <span class="pulse2 glyphicon glyphicon-heart" style="color: red" aria-hidden="true"></span><span class="sr-only">love</span> by <a href="https://www.thecodingmachine.com/"><img src="{{ baseUrl }}/img/logo.png" alt="TheCodingMachine"></a> for all open-source lovers
                 <span class="copyright">&copy; 2016 - {{ "now"|date("Y") }} <a href="https://www.thecodingmachine.com/">TheCodingMachine</a> - All Rights Reserved</span>
-                <span class="design-by">Design by <a href="http://www.borislopez.fr/" target="_blank">Boris Lopez</a><br/>
                 Powered by <a href="http://couscous.io/">Couscous</a></span>
             </div>
         </footer>
